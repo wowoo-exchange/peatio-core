@@ -48,6 +48,10 @@ module Peatio::MQ::Events
     def send_payload(message)
       @socket.send message.to_json
     end
+
+    def destroy
+      @@all.delete(self)
+    end
   end
 
   class RangerEvents

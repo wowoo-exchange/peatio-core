@@ -83,6 +83,10 @@ module Peatio::Ranger
         end
       end
     end
+
+    def destroy
+      @client.destroy
+    end
   end
 
   def self.run!(jwt_public_key)
@@ -121,6 +125,7 @@ module Peatio::Ranger
         end
 
         socket.onclose do
+          connection.destroy
           logger.info "ranger: websocket connection closed"
         end
 
